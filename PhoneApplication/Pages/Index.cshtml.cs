@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Diagnostics;
 using PhoneApplication.Services;
 using PhoneApplication.Models;
 
@@ -24,6 +25,7 @@ namespace PhoneApplication.Pages
         public void OnGet()
         {
             contacts = ContactServices.GetAll();
+            Debug.WriteLine(contacts);
         }
     }
 }

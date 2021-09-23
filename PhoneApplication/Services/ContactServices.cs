@@ -1,8 +1,6 @@
-﻿using System;
+﻿using PhoneApplication.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using PhoneApplication.Models;
+using System.Diagnostics;
 
 namespace PhoneApplication.Services
 {
@@ -17,12 +15,12 @@ namespace PhoneApplication.Services
                 {
                     Name = "Adham",
                     PhoneNumber="01001516725"
-                }, 
+                },
                 new Contact
                 {
                     Name = "Khaled",
                     PhoneNumber="01552423"
-                }, 
+                },
                 new Contact
                 {
                     Name = "Hussing",
@@ -31,7 +29,17 @@ namespace PhoneApplication.Services
 
             };
         }
-        public static List<Contact> GetAll() => contacts;
+        public static List<Contact> GetAll()
+        {
+
+            contacts.ForEach(contact => Debug.WriteLine(contact.Name));
+            return contacts;
+        }
+        public static void addContact(Contact contact)
+        {
+            contacts.Add(contact);
+            Debug.WriteLine("Add Contact Function", "Contact Added Successfully");
+        }
 
     }
 }
