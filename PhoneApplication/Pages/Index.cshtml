@@ -1,0 +1,26 @@
+﻿@page
+@model IndexModel
+@using PhoneApplication.Models
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+  <h1>Hello in Your Phone Contacts over the web</h1>
+    <h3>Your Current Contact </h3>
+    <table class="table mt-5" >
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        @foreach(Contact contact in Model.contacts)
+            {
+                <tr>
+                    <td>@contact.Name</td>
+                    <td>@contact.PhoneNumber</td>
+                </tr>
+            }
+    </table>
+</div>
