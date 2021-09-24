@@ -25,7 +25,7 @@ namespace PhoneApplication.Pages
             {
                 return Page();
             }
-            ContactServices.UpdateContact(targetContact);
+            ContactServices.UpdateContact(targetContact, RouteData.Values["handler"] as string);
             return RedirectToPage("Index");
         }
     }

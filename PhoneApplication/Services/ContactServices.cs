@@ -34,7 +34,7 @@ namespace PhoneApplication.Services
         public static List<Contact> GetAll()
         {
 
-            contacts.ForEach(contact => Debug.WriteLine(contact.Name));
+            contacts.ForEach(contact => Debug.WriteLine(contact.Id.ToString()));
             return contacts;
         }
         public static void addContact(Contact contact)
@@ -49,9 +49,12 @@ namespace PhoneApplication.Services
             return contact;
         }
 
-        public static void UpdateContact(Contact NewContact)
+        public static void UpdateContact(Contact NewContact,string id)
         {
-            int targetIndex = contacts.FindIndex(contact => contact.Id.Equals(NewContact.Id));
+
+            contacts.ForEach(contact => Debug.WriteLine(contact.Id.ToString()));
+
+            int targetIndex = contacts.FindIndex(contact => contact.Id.Equals(id));
             contacts[targetIndex].Name = NewContact.Name;
             contacts[targetIndex].PhoneNumber = NewContact.PhoneNumber;
         }
