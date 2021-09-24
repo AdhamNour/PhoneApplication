@@ -8,7 +8,7 @@ namespace PhoneApplication.Services
 {
     public static class ContactServices
     {
-        static List<Contact> contacts { get; }
+        static List<Contact> contacts { get; set; }
         static ContactServices()
         {
             contacts = new List<Contact>
@@ -51,14 +51,16 @@ namespace PhoneApplication.Services
 
         public static void UpdateContact(Contact NewContact,string id)
         {
-
-            contacts.ForEach(contact => Debug.WriteLine("Ids:", contact.Id.ToString()));
-            Debug.WriteLine("The inComming Id is ", id);
             int targetIndex = contacts.FindIndex(contact => contact.Id.Equals(Guid.Parse(id)));
             contacts[targetIndex].Name = NewContact.Name;
             contacts[targetIndex].PhoneNumber = NewContact.PhoneNumber;
         }
 
-
+        public static void DeleteContact (string id)
+        {
+            Guid targetGuid = Guid.Parse(id);
+            contacts = contacts.Where(contact => !contact.Id.Equals(targetGuid)).ToList();
+        }
     }
 }
+ 

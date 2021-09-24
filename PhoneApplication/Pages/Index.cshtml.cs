@@ -27,5 +27,12 @@ namespace PhoneApplication.Pages
             contacts = ContactServices.GetAll();
             Debug.WriteLine(contacts);
         }
+        public  IActionResult OnPostDeleteAsync(string id)
+        {
+            //            var contact = await _db.Customers.FindAsync(id);
+            ContactServices.DeleteContact(id);
+
+            return RedirectToPage();
+        }
     }
 }

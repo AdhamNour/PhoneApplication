@@ -23,9 +23,12 @@
         <td>@contact.Name</td>
         <td>@contact.PhoneNumber</td>
         <td>
-            @*method="post" asp-page-handler="Delete" asp-route-id="@pizza.Id"*@
-            <form>
-                <button class="btn btn-danger">Delete</button>
+            <form method="post" asp-page-handler="Delete" asp-route-id="@contact.Id.ToString()">
+
+                <button type="submit" asp-page-handler="delete"
+                        asp-route-id="@contact.Id.ToString()" class="btn btn-outline-danger">
+                    delete
+                </button>
             </form>
         </td>
         <td>
