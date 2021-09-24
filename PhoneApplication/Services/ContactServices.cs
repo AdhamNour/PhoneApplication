@@ -1,6 +1,8 @@
 ﻿using PhoneApplication.Models;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System;
+using System.Linq;
 
 namespace PhoneApplication.Services
 {
@@ -40,6 +42,20 @@ namespace PhoneApplication.Services
             contacts.Add(contact);
             Debug.WriteLine("Add Contact Function", "Contact Added Successfully");
         }
+        public static Contact GetContactById(string id)
+        {
+            Guid targetGuid = Guid.Parse(id);
+            Contact contact =contacts.First(contact => contact.Id.Equals(targetGuid));
+            return contact;
+        }
+
+        public static void UpdateContact(Contact NewContact)
+        {
+            int targetIndex = contacts.FindIndex(contact => contact.Id.Equals(NewContact.Id));
+            contacts[targetIndex].Name = NewContact.Name;
+            contacts[targetIndex].PhoneNumber = NewContact.PhoneNumber;
+        }
+
 
     }
 }
