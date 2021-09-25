@@ -71,7 +71,7 @@ namespace PhoneApplication.Services
         public static List<Contact> FilterByName (string name)
         {
             var _context = new ApplicationDBContext();
-            return _context.Contacts.Where(contact => contact.Name.Equals(name)).ToList();
+            return _context.Contacts.Where(contact => contact.Name.Contains(name)).ToList();
 
         }
     }
