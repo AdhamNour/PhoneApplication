@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace PhoneApplication.Models
 {
     public class Contact
@@ -12,11 +14,12 @@ namespace PhoneApplication.Models
         [Required]
         public string PhoneNumber { get; set; }
 
-        public Guid Id { get; }
+        [Key]
+        public string Id { get; set; }
 
         public Contact()
         {
-            Id = Guid.NewGuid();
+            Id = Guid.NewGuid().ToString();
         }
     }
 }

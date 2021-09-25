@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System;
 using System.Linq;
+using PhoneApplication.Database;
 
 namespace PhoneApplication.Services
 {
@@ -34,32 +35,37 @@ namespace PhoneApplication.Services
         public static List<Contact> GetAll()
         {
 
-            contacts.ForEach(contact => Debug.WriteLine(contact.Id.ToString()));
-            return contacts;
+            var _context = new ApplicationDBContext();
+
+            return _context.Contacts.ToList();
         }
         public static void addContact(Contact contact)
         {
-            contacts.Add(contact);
-            Debug.WriteLine("Add Contact Function", "Contact Added Successfully");
+            var _context = new ApplicationDBContext();
+            _context.Contacts.Add(contact);
+            _context.SaveChanges();
         }
         public static Contact GetContactById(string id)
         {
-            Guid targetGuid = Guid.Parse(id);
-            Contact contact =contacts.First(contact => contact.Id.Equals(targetGuid));
-            return contact;
+            var _context = new ApplicationDBContext();
+            return _context.Contacts.Where(contact => contact.Id.Equals(id)).First() ;
         }
 
         public static void UpdateContact(Contact NewContact,string id)
         {
-            int targetIndex = contacts.FindIndex(contact => contact.Id.Equals(Guid.Parse(id)));
-            contacts[targetIndex].Name = NewContact.Name;
-            contacts[targetIndex].PhoneNumber = NewContact.PhoneNumber;
+            var _context = new ApplicationDBContext();
+            NewContact.Id = id;
+            _context.Update(NewContact);
+            _context.SaveChanges();
+
         }
 
         public static void DeleteContact (string id)
         {
-            Guid targetGuid = Guid.Parse(id);
-            contacts = contacts.Where(contact => !contact.Id.Equals(targetGuid)).ToList();
+            var _context = new ApplicationDBContext();
+            var contact = _context.Contacts.Where(_contact => _contact.Id.Equals(id)).First();
+            _context.Contacts.Remove(contact);
+            _context.SaveChanges();
         }
     }
 }
