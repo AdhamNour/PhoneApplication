@@ -72,3 +72,14 @@ body {
  label {
      display:block;
  }
+#search-modal-body > input{
+    width:100%;
+    line-height:1.25;
+    border-radius:1rem;
+    height:2rem;
+    padding:1rem;
+}
+
+#search-modal-body > input:focus{
+    outline:none;
+}

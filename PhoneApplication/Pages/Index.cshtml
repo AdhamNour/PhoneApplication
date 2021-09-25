@@ -8,7 +8,7 @@
 <div class="text-center">
   <h1>Hello in Your Phone Contacts over the web</h1>
     <h3>Your Current Contact </h3>
-    <table class="table mt-5" >
+    <table class="table mt-5">
         <thead>
             <tr>
                 <th>Name</th>
@@ -17,24 +17,23 @@
                 <th>Edit</th>
             </tr>
         </thead>
-        @foreach(Contact contact in Model.contacts)
-            {
-    <tr>
-        <td>@contact.Name</td>
-        <td>@contact.PhoneNumber</td>
-        <td>
-            <form method="post" asp-page-handler="Delete" asp-route-id="@contact.Id.ToString()">
-
-                <button type="submit" asp-page-handler="delete"
-                        asp-route-id="@contact.Id.ToString()" class="btn btn-outline-danger">
-                    delete
-                </button>
-            </form>
-        </td>
-        <td>
-            <a asp-page="/EditContact"  asp-area="" asp-page-handler="@contact.Id" class="btn btn-outline-info" >Edit</a>
-        </td>
-    </tr>
-            }
+        @foreach (Contact contact in Model.contacts)
+        {
+            <tr>
+                <td>@contact.Name</td>
+                <td>@contact.PhoneNumber</td>
+                <td>
+                    <form method="post" asp-page-handler="Delete" asp-route-id="@contact.Id.ToString()">
+                        <button type="submit" asp-page-handler="delete"
+                                asp-route-id="@contact.Id.ToString()" class="btn btn-outline-danger">
+                            delete
+                        </button>
+                    </form>
+                </td>
+                <td>
+                    <a asp-page="/EditContact" asp-area="" asp-page-handler="@contact.Id" class="btn btn-outline-info">Edit</a>
+                </td>
+            </tr>
+        }
     </table>
 </div>

@@ -67,6 +67,13 @@ namespace PhoneApplication.Services
             _context.Contacts.Remove(contact);
             _context.SaveChanges();
         }
+
+        public static List<Contact> FilterByName (string name)
+        {
+            var _context = new ApplicationDBContext();
+            return _context.Contacts.Where(contact => contact.Name.Equals(name)).ToList();
+
+        }
     }
 }
  
